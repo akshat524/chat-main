@@ -62,6 +62,8 @@ public class SarvamAiService {
 		Map firstChoice = (Map) choice.get(0);
 		Map message1 = (Map) firstChoice.get("message");
 		
+		System.out.println(message1.get("content").toString());
+		
 		return message1.get("content").toString();
 	}
 }
