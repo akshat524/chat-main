@@ -121,7 +121,35 @@ public class SarvamAiService {
                 return "Error: 'content' not found in AI response.";
             }
 
-            return contentObj.toString();
+            // If content is direct string
+            if (contentObj instanceof String) {
+                return contentObj.toString();
+            }
+
+            // If content is list/array
+            if (contentObj instanceof List) {
+
+                List contentList = (List) contentObj;
+
+                if (contentList.isEmpty()) {
+                    return "Error: Empty content list.";
+                }
+
+                Object firstItemObj = contentList.get(0);
+
+                if (firstItemObj instanceof Map) {
+
+                    Map firstItem = (Map) firstItemObj;
+
+                    Object textObj = firstItem.get("text");
+
+                    if (textObj != null) {
+                        return textObj.toString();
+                    }
+                }
+            }
+
+            return "Error: Unable to parse AI response.";
 
         } catch (Exception e) {
 
