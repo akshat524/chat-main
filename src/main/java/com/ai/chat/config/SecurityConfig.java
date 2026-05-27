@@ -47,9 +47,9 @@ public class SecurityConfig {
 	}
 	
 	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) {
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf->csrf.disable()).cors(cors->{}).authorizeHttpRequests(
-				auth->auth.requestMatchers("/api/auth/register","/api/auth/login")
+				auth->auth.requestMatchers("/api/auth/register","/api/auth/login","/api/auth/me")
 				.permitAll().anyRequest().authenticated())
 		.formLogin(form->form.loginProcessingUrl("/api/auth/login")
 				.successHandler((req,res,auth)->res.setStatus(200))
