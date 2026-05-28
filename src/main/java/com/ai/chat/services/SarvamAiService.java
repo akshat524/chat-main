@@ -18,10 +18,10 @@ import com.ai.chat.models.ChatMessage;
 @Service
 public class SarvamAiService {
 
-    @Value("${sarvam.api.key}")
+    @Value("${gemini.api.key}")
     private String apiKey;
 
-    @Value("${sarvam.model}")
+    @Value("${gemini.model}")
     private String model;
 
     private final RestTemplate restTemplate = new RestTemplate();
