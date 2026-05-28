@@ -126,12 +126,13 @@ public class GeminiAiService {
 
             return "Error: Unable to parse AI response text.";
 
-        } catch (Exception e) {
+        }  catch (Exception e) {
             System.out.println("========== GEMINI ERROR ==========");
             e.printStackTrace();
             System.out.println("==================================");
 
-            return "Error communicating with AI service.";
+            // Temporarily return the exact exception to debug it instantly on screen
+            return "Error communicating with AI service: " + e.getMessage();
         }
     }
 }
