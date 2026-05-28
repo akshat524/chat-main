@@ -28,7 +28,7 @@ public class ChatController {
 	private UserRepository user_repo;
 	
 	@Autowired
-	private GeminiAiService sarvamAiService;
+	private GeminiAiService geminiAiService;
 	
 	@PostMapping("/response")
 	public ChatResponse chat(@RequestBody ChatRequest request, Principal principal) {
@@ -41,7 +41,7 @@ public class ChatController {
 		userMsg.setUser(user);
 		chatrepo.save(userMsg);
 		
-		String ai_reply = sarvamAiService.askGemini(history, request.getMessage());
+		String ai_reply = geminiAiService.askGemini(history, request.getMessage());
 		ChatMessage aiMsg = new ChatMessage();
 		aiMsg.setRole("assistant");
 		aiMsg.setContent(ai_reply);
